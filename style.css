@@ -1,0 +1,655 @@
+
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+.project, .about, .compare, .contact {
+  will-change: transform, opacity;
+}
+
+.logo {
+  cursor: pointer;
+}
+h1 {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+h1, h2, h3, .logo {
+  font-family: "balboa", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+body {
+  font-family: "balboa", sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+body {
+  font-family: "balboa", sans-serif;
+}
+
+p, .info, .about p {
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 0.8;
+}
+
+/* =========================
+   BACKGROUND CINEMA (PRO)
+========================= */
+
+/* LIGHT GRADING */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120, 80, 255, 0.20), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(0, 200, 255, 0.14), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 80, 120, 0.10), transparent 55%);
+
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* VIGNETTE CINÉMA */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    rgba(0,0,0,0.55) 100%
+  );
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  z-index: 100;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+.cta {
+  border: 1px solid white;
+  padding: 5px 10px;
+}
+
+/* =========================
+   HERO
+========================= */
+/* HERO LAYOUT */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  gap: 60px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+/* IMAGE CONTAINER */
+.hero-portrait {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FRAME STYLE (forme stylée) */
+.portrait-frame {
+  position: relative;
+  width: 320px;
+  height: 420px;
+
+  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+  overflow: hidden;
+
+  box-shadow:
+    0 0 80px rgba(0, 200, 255, 0.15),
+    0 0 120px rgba(120, 80, 255, 0.1);
+}
+
+/* IMAGE */
+.portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter:
+    contrast(1.15)
+    saturate(1.1)
+    brightness(0.95);
+}
+
+/* GLOW COLORISTE */
+.portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(0,255,255,0.3),
+    rgba(120,80,255,0.3),
+    rgba(255,80,120,0.3)
+  );
+
+  z-index: -1;
+  filter: blur(25px);
+  opacity: 0.6;
+}
+
+/* ANIMATION FLOAT */
+.portrait-frame {
+  animation: floatPortrait 6s ease-in-out infinite;
+}
+
+@keyframes floatPortrait {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .hero-portrait {
+    margin-top: 30px;
+  }
+
+  .portrait-frame {
+    width: 220px;
+    height: 300px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  width: fit-content;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+.project {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+.project iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100vw;
+  height: 100vh;
+
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  color: white;
+}
+
+.overlay h2 {
+  font-size: 1.3rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.project::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+}
+
+/* =========================
+   ABOUT
+========================= */
+.about {
+  padding: 140px 40px;
+  display: flex;
+  justify-content: center;
+  background: black;
+}
+
+.about-container {
+  max-width: 800px;
+}
+
+.about h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+}
+
+.about .lead {
+  font-size: 1.4rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.about p {
+  opacity: 0.7;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.about-tags span {
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* =========================
+   SHOWCASE / COMPARE
+========================= */
+.showcase {
+  padding: 120px 40px;
+  background: black;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.showcase-header h2 {
+  font-size: 2.5rem;
+}
+
+.showcase-header p {
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+.compare-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+}
+
+.compare {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  height: 550px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+}
+
+.compare img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-after {
+  clip-path: inset(0 50% 0 0);
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: white;
+  opacity: 0.8;
+}
+
+/* =========================
+   CONTACT
+========================= */
+section {
+  scroll-margin-top: 80px;
+}
+
+.contact {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  padding: 60px;
+  background: black;
+}
+
+/* TEXTE */
+.contact-text {
+  max-width: 500px;
+}
+
+.contact-text h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.contact-text p {
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* INFO */
+.info {
+  margin-top: 30px;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+/* BTN (UNIQUE VERSION CLEAN) */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+}
+
+/* IMAGE */
+.contact-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-visual img {
+  width: 350px;
+  height: 450px;
+  object-fit: cover;
+
+  filter: contrast(1.15) saturate(1.1) brightness(0.95);
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+/* =========================
+   RESPONSIVE CONTACT
+========================= */
+@media (max-width: 768px) {
+  .contact {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .compare {
+    width: 95%;
+    height: 350px;
+  }
+}
+.intro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: introOut 3s ease forwards;
+}
+
+.intro-content {
+  text-align: center;
+}
+
+.intro-content h1 {
+  font-size: 3rem;
+  letter-spacing: 6px;
+  opacity: 0;
+  animation: flicker 2s ease forwards;
+}
+
+.intro-content p {
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1s forwards;
+}
+
+/* FLICKER CINÉMA */
+@keyframes flicker {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  12% { opacity: 0; }
+  15% { opacity: 1; }
+  20% { opacity: 0.4; }
+  30% { opacity: 1; }
+  60% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  to { opacity: 0.8; }
+}
+
+@keyframes introOut {
+  0%, 80% { opacity: 1; }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* =========================
+   PAGE WORK
+========================= */
+
+/* HERO */
+.page-hero {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+}
+
+.page-hero h1 {
+  font-size: 3.5rem;
+}
+
+.page-hero p {
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+/* GRID */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  padding: 80px;
+}
+
+/* ITEM */
+.work-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* VIDEO */
+.work-item iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+/* INFO */
+.work-info {
+  margin-top: 10px;
+}
+
+.work-info h3 {
+  font-size: 1.2rem;
+}
+
+.work-info p {
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+@media (max-width: 768px) {
+
+  .page-hero {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+
+  .work-item iframe {
+    height: 220px;
+  }
+}
+
+.linktree {
+  padding: 90px 20px;
+  text-align: center;
+  background: #0a0a0a;
+  color: white;
+
+  /* animation entrée */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* classe ajoutée en JS */
+.linktree.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.linktree h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* container liens */
+.linktree .links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* liens style minimal chic */
+.linktree a {
+  color: white;
+  text-decoration: none;
+
+  font-size: 17px;
+  opacity: 0.6;
+
+  transition: all 0.3s ease;
+}
+
+/* hover smooth */
+.linktree a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  letter-spacing: 0.5px;
+}
+
+/* petit texte copyright */
+.linktree .small {
+  margin-top: 45px;
+  font-size: 12px;
+  opacity: 0.35;
+}
+
+/* 🔥 version responsive */
+@media (min-width: 768px) {
+  .linktree .links {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .linktree a {
+    font-size: 18px;
+  }
+}
