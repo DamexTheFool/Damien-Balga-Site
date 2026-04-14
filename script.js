@@ -157,3 +157,17 @@ const observer = new IntersectionObserver(entries => {
 });
 
 observer.observe(footer);
+
+const projects = document.querySelectorAll(".project");
+
+projects.forEach(project => {
+  const iframe = project.querySelector("iframe");
+
+  // charge la vidéo
+  iframe.src = iframe.dataset.src;
+
+  // quand iframe est prêt
+  iframe.onload = () => {
+    project.classList.add("loaded");
+  };
+});
